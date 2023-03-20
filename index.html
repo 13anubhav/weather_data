@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +10,12 @@
 	<div class="container">
 		<!-- <h1>Welcome to Anubhav's Weather </h1> -->
         <h1>Get the Current Weather</h1>
+        <h5 style="text-align: center;">Sample Input -->  Delhi, India </h5>
+        <br>
+
 		<div class="form-container">
 			<label for="city">Enter a City:</label>
-			<input type="text" id="city" placeholder="e.g. Delhi, Uttar Pradesh">
+			<input type="text" id="city" placeholder="e.g. Delhi, India">
 			<button onclick="getWeather()">Get Weather</button>
 		</div>
 		<div id="weather"></div>
@@ -150,7 +152,13 @@ button:hover {
 			<p><strong>Condition :</strong> ${data.current.condition.text}</p>
 			<p><strong>Wind Speed :</strong> ${data.current.wind_kph} km/h (${data.current.wind_mph} mph)</p>
 			<p><strong>Humidity :</strong> ${data.current.humidity} %</p>
+           
+
             <p><strong>Visibility :</strong> ${data.current.vis_km} km (${data.current.vis_miles} miles)</p>
+           
+
+            
+
            
            
 		`;
