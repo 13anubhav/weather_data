@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Anubhav Weather Data</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+</head>
+<body>
+	<div class="container">
+		<!-- <h1>Welcome to Anubhav's Weather </h1> -->
+        <h1>Get the Current Weather</h1>
+		<div class="form-container">
+			<label for="city">Enter a City:</label>
+			<input type="text" id="city" placeholder="e.g. Delhi, Uttar Pradesh">
+			<button onclick="getWeather()">Get Weather</button>
+		</div>
+		<div id="weather"></div>
+        <h3 style="text-align: center;">Created with  ❤️ By Anubhav</h3>
+	</div>
+	<script src="script.js"></script>
+
+
+    <style>
+        /* Reset CSS */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: #F5F5F5;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 50px;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 40px;
+	color: #333333;
+	text-shadow: 2px 2px #ddd;
+}
+
+.form-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+label {
+	display: block;
+	margin-right: 10px;
+	font-size: 18px;
+	color: #333333;
+}
+
+input[type="text"] {
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	background-color: #F5F5F5;
+	color: #333333;
+	flex: 1 1 300px;
+}
+
+button {
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	flex: 0 1 200px;
+	font-size: 18px;
+	transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+	background-color: #388E3C;
+}
+
+#weather {
+	font-size: 20px;
+	color: #333333;
+	line-height: 1.5;
+	text-shadow: 1px 1px #ddd;
+	background-color: #F5F5F5;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	margin-bottom: 30px;
+}
+
+#error {
+	font-size: 18px;
+	color: red;
+	margin-bottom: 30px;
+	text-align: center;
+	text-shadow: 1px 1px #ddd;
+}
+
+@media screen and (max-width: 600px) {
+	h1 {
+		font-size: 30px;
+	}
+	input[type="text"] {
+		flex: 1 1 200px;
+	}
+	button {
+		flex: 0 1 100px;
+		font-size: 16px;
+	}
+}
+
+    </style>
+
+    <script>
+        function getWeather() {
+	const cityInput = document.getElementById("city").value;
+	const apiKey = "5e937b4952msh0cd60cae124352dp1bd119jsna9ca7300a732"; // replace with your API key from RapidAPI
+
+	fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${cityInput}`, {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+			"x-rapidapi-key": apiKey
+		}
+	})
+	.then(response => response.json())
+	.then(data => {
+		const weatherDiv = document.getElementById("weather");
+		weatherDiv.innerHTML = `
+			<p><strong>City :</strong> ${data.location.name}</p>
+			<p><strong>Country :</strong> ${data.location.country}</p>
+			<p><strong>Temperature :</strong> ${data.current.temp_c}°C (${data.current.temp_f}°F)</p>
+			<p><strong>Condition :</strong> ${data.current.condition.text}</p>
+			<p><strong>Wind Speed :</strong> ${data.current.wind_kph} km/h (${data.current.wind_mph} mph)</p>
+			<p><strong>Humidity :</strong> ${data.current.humidity} %</p>
+            <p><strong>Visibility :</strong> ${data.current.vis_km} km (${data.current.vis_miles} miles)</p>
+           
+           
+		`;
+        // <p><strong>Wind Direction :</strong> ${data.current.wind_dir}%</p>
+	})
+	.catch(err => console.error(err));
+}  
+    </script>
+
+
+</body>
+</html>
